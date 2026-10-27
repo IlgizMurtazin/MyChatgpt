@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BlackCalculator.Core/BlackCalculator.Core.csproj" />
+    <Project Path="src/BlackCalculator/BlackCalculator.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BlackCalculator.Core.Tests/BlackCalculator.Core.Tests.csproj" />
+  </Folder>
+</Solution>
