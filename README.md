@@ -15,6 +15,18 @@ dotnet run --project src/BlackCalculator
 
 В Visual Studio с поддержкой .NET 10 можно открыть `BlackCalculator.slnx` и выбрать `BlackCalculator` стартовым проектом.
 
+## Где находится EXE
+
+После обычной сборки проекта `BlackCalculator`:
+
+```powershell
+dotnet build src/BlackCalculator -c Release
+```
+
+EXE находится в `src/BlackCalculator/bin/Release/net10.0-windows/win-x64/BlackCalculator.exe` (для сборки Debug замените `Release` на `Debug`). Для запуска этой версии необходим .NET 10 Desktop Runtime; сохраняйте рядом с EXE остальные файлы из папки сборки.
+
+`BlackCalculator.Core` — библиотека вычислений: она выпускается в DLL. Запускаемый проект — **BlackCalculator**.
+
 ## Клавиатура
 
 | Клавиши | Действие |
@@ -40,6 +52,10 @@ dotnet test tests/BlackCalculator.Core.Tests --configuration Release --no-build
 Вычислительная часть отделена от интерфейса и тестируется на Windows, Linux и macOS. `EnableWindowsTargeting` позволяет собрать приложение на Linux, но для запуска Windows Forms необходима Windows. Секреты, API-ключи и внешние сервисы не нужны.
 
 ## EXE без отдельной установки .NET
+
+На Windows запустите **`build-exe.cmd`** из корня проекта. Он создаст автономный `artifacts/win-x64/BlackCalculator.exe`; пользователю готового приложения устанавливать .NET не нужно. Для самой сборки нужен .NET 10 SDK.
+
+Та же команда вручную:
 
 ```powershell
 dotnet publish src/BlackCalculator -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:NuGetLockFilePath=obj/publish.packages.lock.json -o artifacts/win-x64
